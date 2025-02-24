@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="mx-auto px-4 py-16 sm:px-6 lg:px-8 min-h-full flex items-center">
+    <div class="mx-auto max-w-lg">
+        <h1 class="text-center text-2xl font-bold text-red-600 sm:text-3xl">Débutez dès maintenant</h1>
+  
+        <p class="mx-auto mt-4 max-w-md text-center text-gray-700">
+            Partagez vos moments les plus spéciaux avec votre famille et vos amis et faites grandir votre communauté !
+        </p>
+    
+        <form method="post" class="mt-6 mb-0 space-y-4 rounded-lg p-4 shadow-lg sm:p-6 lg:p-8">
+            <p class="text-center text-lg font-semibold">Connectez-vous</p>
+            
+            {% csrf_token %}
+            {{ form.as_p }}
+            
+            <button
+            type="submit"
+            class="block w-full rounded-lg bg-red-700 px-5 py-3 text-sm font-medium text-white"
+            >
+                Se connecter
+            </button>
+    
+            <p class="text-center text-sm text-gray-500">
+                Pas de compte ?
+                <a class="underline" href="#">Créer un compte</a>
+            </p>
+
+            <p class="text-center text-sm text-gray-500">
+                <a class="underline" href="{% url 'password_change' %}">Modifier le mot de passe</a>
+            </p>
+            
+            {% if user.is_authenticated %}
+                <p class="text-center text-sm text-green-800 font-semibold">
+                    {{ message }} 
+                </p>
+                <a class='text-center text-sm text-black flex items-center justify-center' href="{% url 'logout' %}">Se déconnecter</a>
+            {% else %}
+                <p class="text-center text-sm text-red-500 font-semibold">
+                    {{ message }}
+                </p>
+            {% endif %}
+        </form>
+    </div>
+</div>
+
+{% endblock content %}
