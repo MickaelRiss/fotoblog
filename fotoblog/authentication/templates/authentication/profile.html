@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="max-w-md mx-auto mt-10 p-6 bg-white shadow-lg rounded-lg">
+    <h2 class="text-xl font-bold mb-4 text-center">Profil</h2>
+    
+    <p class="text-center text-gray-700">Nom d'utilisateur: {{ user.username }}</p>
+    
+    <div class="mt-10 flex justify-between items-center">
+        <a href="{% url 'password_change' %}" class="inline-block rounded bg-orange-600 px-5 py-3 text-sm font-medium text-white transition hover:bg-orange-700 focus:ring-3 focus:outline-hidden">Modifier le mot de passe</a>
+        <form action="{% url 'logout' %}" method="post">
+            {% csrf_token %}
+            <button type="submit" class="inline-flex items-center justify-center gap-1.5 rounded border border-gray-200 bg-white px-5 py-3 text-gray-900 transition hover:text-gray-700 focus:ring-3 focus:outline-hidden text-sm font-medium">Se déconnecter</button>
+        </form>
+    </div>
+</div>
+
+{% endblock content %}

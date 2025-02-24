@@ -12,32 +12,41 @@
 		<header class="bg-transparent backdrop-blur-md">
 			<div class="mx-auto max-w-screen-xl px-4 sm:px-6 sm:py-8 lg:px-8">
 				<div class="flex flex-col items-start gap-4 md:flex-row md:items-center md:justify-between">
-				<div>
-					<h1 class="md:text-2xl font-bold sm:text-3xl">Fotoblog</h1>
-					<p class="mt-1.5 text-sm text-gray-500">
-					Foto-vlogez en un clic!
-					</p>
-				</div>
+					<div>
+						<h1 class="md:text-2xl font-bold sm:text-3xl">
+							<a href="{% url 'home' %}">
+								Fotoblog
+							</a>
+						</h1>
+						<p class="mt-1.5 text-sm text-gray-500">
+						Foto-vlogez en un clic!
+						</p>
+					</div>
 			
-				<div class="flex items-center gap-4">			
-					<button
-					class="inline-block rounded bg-red-600 px-5 py-3 text-sm font-medium text-white transition hover:bg-red-700 focus:ring-3 focus:outline-hidden"
-					type="button"
-					>
-						Poster une photo
-					</button>
-					
-					<button
-					class="inline-flex items-center justify-center gap-1.5 rounded border border-gray-200 bg-white px-5 py-3 text-gray-900 transition hover:text-gray-700 focus:ring-3 focus:outline-hidden text-sm font-medium"
-					type="button"
-					>	
+					<div class="flex items-center gap-4">			
+						<button
+						class="inline-block rounded bg-red-600 px-5 py-3 text-sm font-medium text-white transition hover:bg-red-700 focus:ring-3 focus:outline-hidden"
+						type="button"
+						>
+							Poster une photo
+						</button>
+						
 						{% if user.is_authenticated %}
-							<a href="{% url 'logout' %}">Se déconnecter</a>
+							<button
+							class="inline-flex items-center justify-center gap-1.5 rounded border border-gray-200 bg-white px-5 py-3 text-gray-900 transition hover:text-gray-700 focus:ring-3 focus:outline-hidden text-sm font-medium"
+							type="button"
+							>	
+								<a href="{% url 'profile' %}">Mon profil</a>
+							</button>
 						{% else %}
-							<a href="{% url 'login' %}">Se connecter</a>
+							<button
+							class="inline-flex items-center justify-center gap-1.5 rounded border border-gray-200 bg-white px-5 py-3 text-gray-900 transition hover:text-gray-700 focus:ring-3 focus:outline-hidden text-sm font-medium"
+							type="button"
+							>	
+								<a href="{% url 'login' %}">Se connecter</a>
+							</button>
 						{% endif %}
-					</button>
-				</div>
+					</div>
 				</div>
 			</div>
 		</header>

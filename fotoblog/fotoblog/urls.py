@@ -18,11 +18,15 @@ from django.contrib import admin
 from django.urls import include, path
 import authentication.views
 import blog.views
+from django.contrib.auth.views import LogoutView, PasswordChangeView
+from authentication.forms import CustomPasswordChangeForm
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('__reload__', include('django_browser_reload.urls')),
-    path('user/login/', authentication.views.login_page, name='login'),
-    path('user/logout/', authentication.views.logout_user, name='logout'),
+    path('user/login/', authentication.views.LoginPage.as_view(), name='login'),
+    path('user/logout/', LogoutView.as_view(), name='logout'),
+    path('user/password_change/', PasswordChangeView.as_view(template_name='authentication/password_change.html', form_class=CustomPasswordChangeForm), name='password_change'),
+    path('user/profile/', authentication.views.profile, name='profile'),
     path('home/', blog.views.home, name='home'),
 ]
