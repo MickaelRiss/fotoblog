@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
-from authentication.forms import LoginForm
+from authentication.forms import LoginForm, SignUpForm
 from django.contrib.auth import login, authenticate
 from django.views.generic import View
 from django.contrib.auth.decorators import login_required
+from django.conf import settings
 
 
 #### EXEMPLE DU CODE EXECUTE POUR LoginView
@@ -30,3 +31,14 @@ class LoginPage(View):
 def profile(request):
     user = request.user
     return render(request, 'authentication/profile.html', {'user': user})
+
+def signup(request):
+    form = SignUpForm()
+    if request.method == 'POST':
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect(settings.LOGIN_REDIRECT_URL)
+    
+    return render(request, 'authentication/signup.html', {'form': form})
