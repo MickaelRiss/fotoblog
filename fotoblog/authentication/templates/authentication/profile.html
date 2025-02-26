@@ -4,7 +4,10 @@
 <div class="max-w-md mx-auto mt-10 p-6 bg-white shadow-lg rounded-lg">
     <h2 class="text-xl font-bold mb-4 text-center">Profil</h2>
     
-    <p class="text-center text-gray-700">Nom d'utilisateur: {{ user.username }}</p>
+    <p class="text-gray-700">Nom d'utilisateur: {{ user.username }}</p>
+    <p class="text-gray-700">Prenom: {{ user.first_name }}</p>
+    <p class="text-gray-700">Nom: {{ user.last_name }}</p>
+    <p class="text-gray-700">Email: {{ user.email }}</p>
     
     <div class="mt-10 flex justify-between items-center">
         <a href="{% url 'password_change' %}" class="inline-block rounded bg-orange-600 px-5 py-3 text-sm font-medium text-white transition hover:bg-orange-700 focus:ring-3 focus:outline-hidden">Modifier le mot de passe</a>
