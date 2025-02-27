@@ -24,9 +24,10 @@ from authentication.forms import CustomPasswordChangeForm
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('__reload__', include('django_browser_reload.urls')),
-    path('user/login/', authentication.views.LoginPage.as_view(), name='login'),
-    path('user/logout/', LogoutView.as_view(), name='logout'),
+    path('login/', authentication.views.LoginPage.as_view(), name='login'),
+    path('logout/', LogoutView.as_view(), name='logout'),
     path('user/password_change/', PasswordChangeView.as_view(template_name='authentication/password_change.html', form_class=CustomPasswordChangeForm), name='password_change'),
     path('user/profile/', authentication.views.profile, name='profile'),
+    path('signup/', authentication.views.signup, name='signup'),
     path('home/', blog.views.home, name='home'),
 ]

@@ -67,22 +67,24 @@ class SignUpForm(UserCreationForm):
             "placeholder": "Nom de famille"
         }),
     )
+    role = forms.ChoiceField(
+        choices= User._meta.get_field('role').choices,
+        widget=forms.Select(attrs={
+            "class": "w-full rounded-lg border-gray-200 p-4 text-sm shadow-xs bg-white",
+        })
+    )
     password1 = forms.CharField(
+        label="Mot de passe",
         widget=forms.PasswordInput(attrs={
             "class": "w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-xs",
             "placeholder": "Mot de passe"
         }),
     )
     password2 = forms.CharField(
+        label="Confirmer le mot de passe",
         widget=forms.PasswordInput(attrs={
             "class": "w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-xs",
-            "placeholder": "Confirmer le mot de passe"
+            "placeholder": "Confirmez le mot de passe"
         }),
-    )
-    role = forms.ChoiceField(
-        choices= User._meta.get_field('role').choices,
-        widget=forms.Select(attrs={
-            "class": "w-full rounded-lg border-gray-200 p-4 text-sm shadow-xs bg-white",
-        })
     )
 
