@@ -35,6 +35,8 @@ urlpatterns = [
     path('signup/', authentication.views.signup, name='signup'),
     path('blog/home/', blog.views.home, name='home'),
     path('blog/photo_upload/', blog.views.photo_upload, name='photo_upload'),
+    path('blog/create/', blog.views.blog_and_photo_upload, name='blog_create'),
+    path('blog/<int:blog_id>/', blog.views.blog_view, name='blog_view'),
 ]
 
 if settings.DEBUG:
