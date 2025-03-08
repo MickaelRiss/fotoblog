@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from authentication.forms import LoginForm, SignUpForm
+from authentication.forms import LoginForm, SignUpForm, UploadProfilePhotoForm
 from django.contrib.auth import login, authenticate
 from django.views.generic import View
 from django.contrib.auth.decorators import login_required
@@ -42,3 +42,16 @@ def signup(request):
             return redirect(settings.LOGIN_REDIRECT_URL)
     
     return render(request, 'authentication/signup.html', {'form': form})
+
+@login_required
+def upload_profile_photo(request):
+    form = UploadProfilePhotoForm(instance=request.user)
+    actual_photo = request.user.profile_photo.url
+    if request.method == 'POST':
+        form = UploadProfilePhotoForm(request.POST, request.FILES, instance=request.user)
+        photo = form.save(commit=False)
+        photo.uploader = request.user
+        form.save()
+        return redirect('profile')
+
+    return render(request, 'authentication/upload_profile_photo.html', {'form': form, 'actual_photo': actual_photo})

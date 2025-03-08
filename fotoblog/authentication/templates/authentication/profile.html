@@ -9,7 +9,8 @@
     <p class="text-gray-700">Nom: {{ user.last_name }}</p>
     <p class="text-gray-700">Email: {{ user.email }}</p>
     
-    <div class="mt-10 flex justify-between items-center">
+    <a href="{% url 'upload_profile_photo' %}" class="mt-10 inline-block rounded bg-green-600 px-5 py-3 text-sm font-medium text-white transition hover:bg-green-700 focus:ring-3 focus:outline-hidden">Changer la photo de profil</a>
+    <div class="mt-6 flex justify-between items-center">
         <a href="{% url 'password_change' %}" class="inline-block rounded bg-orange-600 px-5 py-3 text-sm font-medium text-white transition hover:bg-orange-700 focus:ring-3 focus:outline-hidden">Modifier le mot de passe</a>
         <form action="{% url 'logout' %}" method="post">
             {% csrf_token %}

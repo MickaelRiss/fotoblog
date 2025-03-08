@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+
+    <div class="max-w-md mx-auto mt-10 p-6 bg-white shadow-lg rounded-lg">
+        <h2 class="text-xl font-bold mb-10 text-center">Changer la photo de profil</h2>
+        <div>
+            {% if user.profile_photo %}
+                <p>Photo actuelle</p>
+                <img src="{{ actual_photo }}" alt="Photo de profil" class="h-24 w-24 rounded-full border border-gray-200 mx-auto">
+            {% endif %}    
+        </div>
+        <form method="post" class="space-y-4" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button 
+                type="submit" 
+                class="w-full bg-red-600 text-white p-2 rounded-lg hover:bg-red-700 transition">
+                Changer la photo de profil
+            </button>
+        </form>
+    </div>
+
+{% endif %}
+
+{% endblock content %}

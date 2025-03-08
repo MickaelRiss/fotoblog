@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import PasswordChangeForm, UserCreationForm
 from django.contrib.auth import get_user_model
+from django.forms import ModelForm
 
 User = get_user_model()
 
@@ -44,10 +45,10 @@ class SignUpForm(UserCreationForm):
         model = User
         fields = ['username', 'email', 'first_name', 'last_name', 'role']
     username = forms.CharField(
-    widget=forms.TextInput(attrs={
-        "class": "w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-xs",
-        "placeholder": "Nom d'utilisateur"
-    }),
+        widget=forms.TextInput(attrs={
+            "class": "w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-xs",
+            "placeholder": "Nom d'utilisateur"
+        }),
     )
     email = forms.EmailField(
         widget=forms.EmailInput(attrs={
@@ -88,3 +89,13 @@ class SignUpForm(UserCreationForm):
         }),
     )
 
+class UploadProfilePhotoForm(ModelForm):
+    class Meta:
+        model = User
+        fields = ['profile_photo']
+    
+    profile_photo = forms.ImageField(
+        widget=forms.FileInput(attrs={
+        "class": "w-full text-sm text-gray-700 file:border-0 file:bg-blue-500 file:text-white file:px-6 file:py-2 file:rounded-lg file:hover:bg-blue-600 file:focus:outline-none file:transition-all file:duration-300"
+        })
+    )

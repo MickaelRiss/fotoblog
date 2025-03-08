@@ -20,6 +20,9 @@ import authentication.views
 import blog.views
 from django.contrib.auth.views import LogoutView, PasswordChangeView
 from authentication.forms import CustomPasswordChangeForm
+## UNIQUEMENT DANS UN ENV DE DEV PAS PROD
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -28,6 +31,11 @@ urlpatterns = [
     path('logout/', LogoutView.as_view(), name='logout'),
     path('user/password_change/', PasswordChangeView.as_view(template_name='authentication/password_change.html', form_class=CustomPasswordChangeForm), name='password_change'),
     path('user/profile/', authentication.views.profile, name='profile'),
+    path('user/upload_profile_photo/', authentication.views.upload_profile_photo, name='upload_profile_photo'),
     path('signup/', authentication.views.signup, name='signup'),
-    path('home/', blog.views.home, name='home'),
+    path('blog/home/', blog.views.home, name='home'),
+    path('blog/photo_upload/', blog.views.photo_upload, name='photo_upload'),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

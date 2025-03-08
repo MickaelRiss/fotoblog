@@ -15,5 +15,16 @@
         </p>
     </div>
 </div>  
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+    {% for photo in photos %}
+        <div class="flex flex-col items-center gap-4 mb-10">
+            <p class="text-gray-700 text-sm font-bold">{{ photo.caption }}</p>
+            <img src="{{ photo.image.url }}" 
+                 srcset="{{ photo.image.url }} 1x, {{ photo.image.url|add:'?w=600' }} 2x" 
+                 class="w-full h-48 object-contain">
+        </div>
+    {% endfor %}
+</div>
+
 
 {% endblock content %}
