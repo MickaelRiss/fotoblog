@@ -2,16 +2,17 @@
 {% block content %}
 
 <div class="max-w-md mx-auto mt-10 p-6 bg-white shadow-lg rounded-lg mb-10">
-    <h2 class="text-xl font-bold mb-10 text-center">S'inscrire</h2>
+    <h2 class="text-xl font-bold mb-10 text-center">Poster une photo</h2>
     
-    <form method="post" class="space-y-4">
-        {{ form.as_p }}
+    <form method="post" class="space-y-4" enctype="multipart/form-data">
         {% csrf_token %}
+        {{ form.as_p }}
         <button 
             type="submit" 
             class="w-full bg-red-600 text-white p-2 rounded-lg hover:bg-red-700 transition">
-            S'inscrire
+            Poster
         </button>
     </form>
 </div>
+
 {% endblock content %}

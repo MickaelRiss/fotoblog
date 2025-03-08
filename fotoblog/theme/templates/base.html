@@ -24,27 +24,26 @@
 					</div>
 			
 					<div class="flex items-center gap-4">			
-						<button
-						class="inline-block rounded bg-red-600 px-5 py-3 text-sm font-medium text-white transition hover:bg-red-700 focus:ring-3 focus:outline-hidden"
-						type="button"
-						>
-							Poster une photo
-						</button>
+						<a href="{% url 'photo_upload' %}">
+							<button class="inline-block rounded bg-red-600 px-5 py-3 text-sm font-medium text-white transition hover:bg-red-700 focus:ring-3 focus:outline-hidden" type="button">
+								Poster une photo
+							</button>
+						</a>
 						
 						{% if user.is_authenticated %}
-							<button
-							class="inline-flex items-center justify-center gap-1.5 rounded border border-gray-200 bg-white px-5 py-3 text-gray-900 transition hover:text-gray-700 focus:ring-3 focus:outline-hidden text-sm font-medium"
-							type="button"
-							>	
-								<a href="{% url 'profile' %}">Mon profil</a>
-							</button>
+							{% if user.profile_photo %}
+								<a href="{% url 'profile' %}">
+									<img class="h-16 w-16 rounded-full border border-gray-200 bg-white transition hover:text-gray-700 focus:ring-3 focus:outline-hidden"  src="{{ user.profile_photo.url }}" alt="">
+								</a>
+							{% else %}
+								<a class="h-16 w-16 rounded-full border border-gray-200 bg-white transition hover:text-gray-700 focus:ring-3 focus:outline-hidden" href="{% url 'profile' %}"></a>
+							{% endif %}    
 						{% else %}
-							<button
-							class="inline-flex items-center justify-center gap-1.5 rounded border border-gray-200 bg-white px-5 py-3 text-gray-900 transition hover:text-gray-700 focus:ring-3 focus:outline-hidden text-sm font-medium"
-							type="button"
-							>	
-								<a href="{% url 'login' %}">Se connecter</a>
-							</button>
+							<a href="{% url 'login' %}">
+								<button class="inline-flex items-center justify-center gap-1.5 rounded border border-gray-200 bg-white px-5 py-3 text-gray-900 transition hover:text-gray-700 focus:ring-3 focus:outline-hidden text-sm font-medium" type="button">
+									Se connecter
+								</button>
+							</a>
 						{% endif %}
 					</div>
 				</div>
