@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from blog.models import Photo, Blog
-from blog.forms import PhotoForm, BlogForm
+from blog.forms import PhotoForm, BlogForm, DeleteBlogForm
 
 @login_required
 def home(request):
@@ -43,3 +43,22 @@ def blog_and_photo_upload(request):
 def blog_view(request, blog_id):
     blog = get_object_or_404(Blog, id=blog_id)
     return render(request, 'blog/view_blog.html', context={'blog': blog})
+
+@login_required
+def edit_blog(request, blog_id):
+    blog = get_object_or_404(Blog, id=blog_id)
+    edit_blog = BlogForm(instance=blog)
+    delete_blog = DeleteBlogForm()
+    if request.method == 'POST':
+        if 'edit_blog' in request.POST:
+            edit_blog = BlogForm(request.POST, instance=blog)
+            if edit_blog.is_valid():
+                edit_blog.save()
+                return redirect('home')
+        elif 'delete_blog' in request.POST:
+            delete_blog = DeleteBlogForm(request.POST)
+            if delete_blog.is_valid():
+                blog.delete()
+                return redirect('home')
+        
+    return render(request, 'blog/edit_blog.html', context={'edit_blog': edit_blog, 'delete_blog': delete_blog})
