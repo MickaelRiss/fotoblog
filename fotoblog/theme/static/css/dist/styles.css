@@ -800,8 +800,20 @@ select {
   margin-bottom: 2.5rem;
 }
 
+.mb-20 {
+  margin-bottom: 5rem;
+}
+
 .mb-4 {
   margin-bottom: 1rem;
+}
+
+.mb-40 {
+  margin-bottom: 10rem;
+}
+
+.mb-5 {
+  margin-bottom: 1.25rem;
 }
 
 .mt-1\.5 {
@@ -862,6 +874,10 @@ select {
 
 .w-24 {
   width: 6rem;
+}
+
+.w-40 {
+  width: 10rem;
 }
 
 .w-full {
@@ -945,6 +961,11 @@ select {
 .border-gray-200 {
   --tw-border-opacity: 1;
   border-color: rgb(229 231 235 / var(--tw-border-opacity, 1));
+}
+
+.bg-gray-100 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(243 244 246 / var(--tw-bg-opacity, 1));
 }
 
 .bg-green-600 {

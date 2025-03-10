@@ -1,5 +1,5 @@
 from django import forms
-from blog.models import Photo
+from blog.models import Photo, Blog
 
 class PhotoForm(forms.ModelForm):
     class Meta:
@@ -14,4 +14,27 @@ class PhotoForm(forms.ModelForm):
         widget=forms.TextInput(attrs={
         "class": "w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-xs"
         }),    
+        label='Description'
     )
+
+class BlogForm(forms.ModelForm):
+    edit_blog = forms.BooleanField(widget=forms.HiddenInput(), initial=True)
+    class Meta:
+        model = Blog
+        fields = ['title', 'content']
+
+    title = forms.CharField(
+        widget=forms.TextInput(attrs={
+        "class": "w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-xs"
+        }),
+        label='Titre'
+    )
+    content = forms.CharField(
+        widget=forms.Textarea(attrs={
+        "class": "w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-xs"
+        }),
+        label='Contenu' 
+    )
+
+class DeleteBlogForm(forms.Form):
+    delete_blog = forms.BooleanField(widget=forms.HiddenInput(), initial=True)

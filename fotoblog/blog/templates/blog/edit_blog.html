@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="max-w-md mx-auto mt-10 p-6 bg-white shadow-lg rounded-lg">
+    <h2 class="text-xl font-bold mb-10 text-center">Modifier un blog</h2>
+
+    <form method="post" class="space-y-4 mx-auto">
+        {{ edit_blog.as_p }}
+        {% csrf_token %}
+        <div class="flex justify-center gap-4"> <!-- Flex pour aligner les boutons -->
+            <button class="w-40 bg-green-600 text-white p-2 rounded-lg hover:bg-green-700 transition" type="submit">
+                Sauvegarder
+            </button>
+            
+            <button form="delete-form" class="w-40 bg-red-600 text-white p-2 rounded-lg hover:bg-red-700 transition" type="submit">
+                Supprimer
+            </button>
+        </div>
+    </form>
+
+    <form id="delete-form" method="post">
+        {{ delete_blog.as_p }}
+        {% csrf_token %}
+    </form>
+</div>
+
+
+{% endblock content %}

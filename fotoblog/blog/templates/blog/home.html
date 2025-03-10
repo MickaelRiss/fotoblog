@@ -15,7 +15,9 @@
         </p>
     </div>
 </div>  
-<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+
+<h2 class="text-xl font-bold mb-10 text-center">Liste des photos</h2>
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mb-40">
     {% for photo in photos %}
         <div class="flex flex-col items-center gap-4 mb-10">
             <p class="text-gray-700 text-sm font-bold">{{ photo.caption }}</p>
@@ -23,6 +25,19 @@
                  srcset="{{ photo.image.url }} 1x, {{ photo.image.url|add:'?w=600' }} 2x" 
                  class="w-full h-48 object-contain">
         </div>
+    {% endfor %}
+</div>
+
+<h2 class="text-xl font-bold mb-10 text-center">Liste des blogs</h2>
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mb-20">
+    {% for blog in blogs %}
+        <a href="{% url 'blog_view' blog.id %}" class="bg-gray-100 flex flex-col items-center gap-4 p-6 rounded-lg">
+            <p class="text-red-700 font-bold">{{ blog.author }}</p>
+            <p class="text-gray-700 text-sm">{{ blog.title }}</p>
+            <img src="{{ blog.photo.image.url }}" 
+                 srcset="{{ blog.photo.image.url }} 1x, {{ blog.photo.image.url|add:'?w=600' }} 2x" 
+                 class="w-full h-48 object-contain">
+        </a>
     {% endfor %}
 </div>
 

@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="max-w-xl mx-auto mt-10 p-6 bg-white shadow-lg rounded-lg">
+    <h2 class="text-xl font-bold mb-10 text-center">{{ blog.title}}</h2>
+    <img class="mb-5 mx-auto" src="{{ blog.photo.image.url }}" alt="{{ blog.title }} - {{ blog.author }}">
+    <p class="mb-10 font-semibold">From : {{ blog.author}}</p>
+    <p>{{ blog.photo.caption }}</p>
+    <p>{{ blog.content }}</p>
+    <p><a href="{% url 'edit_blog' blog.id %}">Modifier le billet</a></p>
+</div>
+
+{% endblock content %}
