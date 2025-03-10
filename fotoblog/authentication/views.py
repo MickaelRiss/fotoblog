@@ -5,7 +5,6 @@ from django.views.generic import View
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
 
-
 #### EXEMPLE DU CODE EXECUTE POUR LoginView
 class LoginPage(View):
     template_name = 'authentication/login.html'
