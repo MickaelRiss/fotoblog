@@ -99,3 +99,8 @@ class UploadProfilePhotoForm(ModelForm):
         "class": "w-full text-sm text-gray-700 file:border-0 file:bg-blue-500 file:text-white file:px-6 file:py-2 file:rounded-lg file:hover:bg-blue-600 file:focus:outline-none file:transition-all file:duration-300"
         })
     )
+
+class FollowUserForm(forms.Form):
+    class Meta:
+        model = User
+        fields = ['follow']

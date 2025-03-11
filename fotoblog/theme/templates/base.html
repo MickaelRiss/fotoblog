@@ -23,20 +23,24 @@
 						</p>
 					</div>
 			
-					<div class="flex items-center gap-4">			
-						<a href="{% url 'photo_upload' %}">
-							<button class="inline-block rounded bg-red-600 px-5 py-3 text-sm font-medium text-white transition hover:bg-red-700 focus:ring-3 focus:outline-hidden" type="button">
-								Poster une photo
-							</button>
-						</a>
+					<div class="flex items-center gap-4">
+						{% if perms.blog.add_photo %}			
+							<a href="{% url 'photo_upload' %}">
+								<button class="inline-block rounded bg-red-600 px-5 py-3 text-sm font-medium text-white transition hover:bg-red-700 focus:ring-3 focus:outline-hidden" type="button">
+									Poster une photo
+								</button>
+							</a>
+						{% endif %}
 
 						{% if user.is_authenticated %}
+							{% if perms.blog.add_post %}
+							<a href="{% url 'blog_create' %}">
+								<button class="inline-block rounded bg-orange-600 px-5 py-3 text-sm font-medium text-white transition hover:bg-orange-700 focus:ring-3 focus:outline-hidden" type="button">
+									Publier un billet
+								</button>
+							</a>
+							{% endif %}
 							{% if user.profile_photo %}
-								<a href="{% url 'blog_create' %}">
-									<button class="inline-block rounded bg-orange-600 px-5 py-3 text-sm font-medium text-white transition hover:bg-orange-700 focus:ring-3 focus:outline-hidden" type="button">
-										Publier un billet
-									</button>
-								</a>
 								<a href="{% url 'profile' %}">
 									<img class="h-16 w-16 rounded-full border border-gray-200 bg-white transition hover:text-gray-700 focus:ring-3 focus:outline-hidden"  src="{{ user.profile_photo.url }}" alt="">
 								</a>

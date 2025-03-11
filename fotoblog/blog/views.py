@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, permission_required
 from blog.models import Photo, Blog
 from blog.forms import PhotoForm, BlogForm, DeleteBlogForm
 from django.forms import formset_factory
@@ -11,6 +11,7 @@ def home(request):
     return render(request, 'blog/home.html', context={'photos': photos, 'blogs': blogs})
 
 @login_required
+@permission_required('blog.add_photo', raise_exception=True) #raise_exception empeche la redirection automatique pour vous l'erreur 403
 def photo_upload(request):
     form = PhotoForm()
     if request.method == 'POST':
@@ -22,6 +23,7 @@ def photo_upload(request):
     return render(request, 'blog/photo_upload.html', context={'form': form})
 
 @login_required
+@permission_required('blog.add_blog', raise_exception=True)
 def blog_and_photo_upload(request):
     photo_form = PhotoForm()
     blog_form = BlogForm()
@@ -46,6 +48,7 @@ def blog_view(request, blog_id):
     return render(request, 'blog/view_blog.html', context={'blog': blog})
 
 @login_required
+@permission_required('blog.change_blog', raise_exception=True)
 def edit_blog(request, blog_id):
     blog = get_object_or_404(Blog, id=blog_id)
     edit_blog = BlogForm(instance=blog)
