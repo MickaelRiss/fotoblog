@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required, permission_required
 from blog.models import Photo, Blog
 from blog.forms import PhotoForm, BlogForm, DeleteBlogForm
+from authentication.forms import FollowUsersForm
 from django.forms import formset_factory
 
 @login_required
@@ -81,3 +82,13 @@ def create_multiple_photos(request):
                     photo.save()
             return redirect('home')
     return render(request, 'blog/create_multiple_posts.html', context={'formset': formset})
+
+@login_required
+def follow_users(request):
+    form = FollowUsersForm(instance=request.user)
+    if request.method == 'POST':
+        form = FollowUsersForm(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+    return render(request, 'blog/follow_users.html', context={'form': form})

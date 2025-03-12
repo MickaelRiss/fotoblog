@@ -100,7 +100,7 @@ class UploadProfilePhotoForm(ModelForm):
         })
     )
 
-class FollowUserForm(forms.Form):
+class FollowUsersForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ['follow']
