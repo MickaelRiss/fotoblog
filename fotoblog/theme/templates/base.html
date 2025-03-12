@@ -40,6 +40,11 @@
 								</button>
 							</a>
 							{% endif %}
+							<a href="{% url 'follow_users' %}">
+								<button class="inline-block rounded bg-blue-600 px-5 py-3 text-sm font-medium text-white transition hover:bg-blue-700 focus:ring-3 focus:outline-hidden" type="button">
+									Suivre un utilisateur
+								</button>
+							</a>
 							{% if user.profile_photo %}
 								<a href="{% url 'profile' %}">
 									<img class="h-16 w-16 rounded-full border border-gray-200 bg-white transition hover:text-gray-700 focus:ring-3 focus:outline-hidden"  src="{{ user.profile_photo.url }}" alt="">
